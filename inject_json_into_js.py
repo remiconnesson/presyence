@@ -34,7 +34,7 @@ for f in asset_folder.iterdir():
         start_placeholder = content.index(begin_payload) + len(begin_payload)
         end_placeholder = content.index(end_payload)
         content = list(content)
-        new_placeholder = "REPLACEMEPLEASE"
+        new_placeholder = str(hash("REPLACEMEPLEASE")) * 10
         content[start_placeholder:end_placeholder] = list(new_placeholder)
         content = "".join(content)
 
