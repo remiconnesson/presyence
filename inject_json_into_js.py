@@ -11,7 +11,9 @@ asset_folder = Path('.') / "frontend" / "dist" / "assets"
 
 for f in asset_folder.iterdir():
     if f.name.startswith("worker"):
-        print(f.name);
+        with open(f) as target_file:
+            content = target_file.read()
+            print(content);
 """
 Once the target is found, we'll need to locate in the file the placeholder for the payload.
 Currently, it looks like this:
