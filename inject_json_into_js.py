@@ -17,7 +17,7 @@ So the idea is:
 2. to delete what is in between
 3. to inject the data we want to use in the frontend
 """
-
+import json
 from pathlib import Path
 
 asset_folder = Path('.') / "frontend" / "dist" / "assets"
@@ -38,10 +38,17 @@ for f in asset_folder.iterdir():
         content[start_placeholder:end_placeholder] = list(new_placeholder)
         content = "".join(content)
 
-        print(content)
+        # dump a json object into a string
+        new_payload = {
+            "prefix":"PYTHON WAS HERE"
+        }
+        new_payload = json.dumps(new_payload, separators=(',', ':'))  # separators with out whitespace
+        trim_first_and_last_character = lambda s : s[1: -1]  # remove `{` and `}`
+        new_payload = trim_first_and_last_character(new_payload)
 
-        """
+        # inject the string in place of the placeholder
+        content = content.replace(new_placeholder, new_payload)
+
         with open(f, 'w') as target_file:
             content = content.replace('AS IN THE SOURCE', 'PYTHON WAS HERE')
             target_file.write(content);
-        """
