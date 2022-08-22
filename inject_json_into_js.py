@@ -14,6 +14,10 @@ for f in asset_folder.iterdir():
         with open(f) as target_file:
             content = target_file.read()
             print(content);
+
+        with open(f, 'w') as target_file:
+            content = content.replace('AS IN THE SOURCE', 'PYTHON WAS HERE')
+            target_file.write(content);
 """
 Once the target is found, we'll need to locate in the file the placeholder for the payload.
 Currently, it looks like this:
