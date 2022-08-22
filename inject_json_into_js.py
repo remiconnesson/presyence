@@ -30,7 +30,7 @@ for f in asset_folder.iterdir():
 
 
         # insert a place holder easier to replace
-        begin_payload, end_payload = "beginPayload:!0,", "endPayload:!0"
+        begin_payload, end_payload = "beginPayload:!0,", ",endPayload:!0"
         start_placeholder = content.index(begin_payload) + len(begin_payload)
         end_placeholder = content.index(end_payload)
         content = list(content)
