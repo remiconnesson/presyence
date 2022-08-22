@@ -10,7 +10,8 @@ from pathlib import Path
 asset_folder = Path('.') / "frontend" / "dist" / "assets"
 
 for f in asset_folder.iterdir():
-    print(f.name);
+    if f.name.startswith("worker"):
+        print(f.name);
 """
 Once the target is found, we'll need to locate in the file the placeholder for the payload.
 Currently, it looks like this:
