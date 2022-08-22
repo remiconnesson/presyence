@@ -28,13 +28,17 @@ for f in asset_folder.iterdir():
             content = target_file.read()
             print(content);
 
+
+        # insert a place holder easier to replace
         begin_payload, end_payload = "beginPayload:!0,", "endPayload:!0"
         start_placeholder = content.index(begin_payload) + len(begin_payload)
         end_placeholder = content.index(end_payload)
         content = list(content)
-        content[start_placeholder:end_placeholder] = ""
+        new_placeholder = "REPLACEMEPLEASE"
+        content[start_placeholder:end_placeholder] = list(new_placeholder)
+        content = "".join(content)
 
-        print("".join(content));
+        print(content)
 
         """
         with open(f, 'w') as target_file:
