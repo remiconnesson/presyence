@@ -5,8 +5,12 @@ But next build it won't be the same.
 
 Though it will always starter with `worker` and end with `.js`
 """
+from pathlib import Path
 
+asset_folder = Path('.') / "frontend" / "dist" / "assets"
 
+for f in asset_folder.iterdir():
+    print(f.name);
 """
 Once the target is found, we'll need to locate in the file the placeholder for the payload.
 Currently, it looks like this:
