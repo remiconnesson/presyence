@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import TheWelcome from '@/components/TheWelcome.vue'
+const greeting = "Hello, World";
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <h1>{{ greeting }}</h1>
   </main>
 </template>
