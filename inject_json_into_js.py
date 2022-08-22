@@ -28,6 +28,16 @@ for f in asset_folder.iterdir():
             content = target_file.read()
             print(content);
 
+        begin_payload, end_payload = "beginPayload:!0,", "endPayload:!0"
+        start_placeholder = content.index(begin_payload) + len(begin_payload)
+        end_placeholder = content.index(end_payload)
+        content = list(content)
+        content[start_placeholder:end_placeholder] = ""
+
+        print("".join(content));
+
+        """
         with open(f, 'w') as target_file:
             content = content.replace('AS IN THE SOURCE', 'PYTHON WAS HERE')
             target_file.write(content);
+        """
