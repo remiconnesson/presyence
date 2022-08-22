@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import Worker from "@/assets/worker.js?worker";
+import Worker from "@/assets/worker.ts?worker";
 
 let worker: Worker;
 
