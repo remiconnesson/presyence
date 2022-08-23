@@ -1,3 +1,4 @@
+import pandas as pd
 import inspect
 from class_definitions import TestGroup, SimpleSuccessTest, SimpleExceptionTest, SimpleTest
 from demo import tests
@@ -10,6 +11,37 @@ def get_df_as_csv(test: SimpleTest):
     print(test.test_input.to_csv(index=False))
     print(test.test_output.to_csv(index=False))
 
+def exec_test(test: SimpleTest):
+    try:
+        result = test.function(test.test_input)
+    except Exception as e:
+        # here will need the traceback as a result
+        print(e)
+    try:
+        type_of_output = type(test.test_output)
+        type_of_result = type(result)
+        if type_of_output is not type_of_result:
+            raise TypeError(f"Mismatched type {type_of_output} != {type_of_result}")
+        if isinstance(result, pd.DataFrame):
+            assert_same = pd.testing.assert_frame_equal
+        elif isinstance(result, pd.Series):
+            assert_same = pd.testing.assert_serie_equal
+        else:
+            raise NotImplementedError
+        test_ok = assert_same(test.test_output, result)
+    except AssertionError as e:
+        # the function returned but not with the good value
+        # so this is a failing test, and the report will print the result
+    except TypeError as e:
+        # the function returned but not with the good value
+        # so this is a failing test, and the report will print the result
+    else:
+        # the test was successful
+        #
+
+    finally:
+        print('wrap up')
+
 
 def run_tests(tests: list[TestGroup | SimpleTest]):
     for test in tests:
@@ -17,11 +49,12 @@ def run_tests(tests: list[TestGroup | SimpleTest]):
             run_tests(test.tests)
         else:
             if isinstance(test, SimpleSuccessTest):
-                print("SST", test)
+                pass # print("SST", test)
             elif isinstance(test, SimpleExceptionTest):
-                print("SET", test)
-            inspect_test(test)
-            get_df_as_csv(test)
+                pass # print("SET", test)
+            # inspect_test(test)
+            # get_df_as_csv(test)
+            exec_test(test)
 
 
 run_tests(tests)
