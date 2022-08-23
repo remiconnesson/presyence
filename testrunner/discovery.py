@@ -9,20 +9,21 @@ p = Path('.')
 test_files = list(p.glob('**/*.spec.sy.py'))
 # then load them up dynamically
 
+each_module_tests = []
+
 for i, test_file in enumerate(test_files):
     module_name = "test_modules_{i}"
     loader = importlib.machinery.SourceFileLoader(module_name, str(test_file))
     m = types.ModuleType(module_name)
     loader.exec_module(m)
     # then for each check if there's a test list
-    print(dir(m))
     tests = m.__dict__.get("TESTS", "notfound")
     if tests=="notfound":
         raise Exception("Your test files must contain a TESTS variable, which is a list of SimpleTest")
-    print(tests)
-    break
     # then make a list of list of tests
+    each_module_tests.append(tests)
 
+print(each_module_tests)
 
 
 
