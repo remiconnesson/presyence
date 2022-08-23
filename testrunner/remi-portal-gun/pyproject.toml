@@ -11,6 +11,8 @@ remi-portal-gun = "remi_portal_gun.main:app"
 [tool.poetry.dependencies]
 python = "^3.10"
 typer = "^0.6.1"
+fastapi = "^0.80.0"
+uvicorn = "^0.18.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
