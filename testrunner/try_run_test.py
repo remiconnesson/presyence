@@ -1,4 +1,5 @@
 import pandas as pd
+import traceback
 import inspect
 from class_definitions import TestGroup, SimpleSuccessTest, SimpleExceptionTest, SimpleTest
 from demo import tests
@@ -14,10 +15,6 @@ def get_df_as_csv(test: SimpleTest):
 def exec_test(test: SimpleTest):
     try:
         result = test.function(test.test_input)
-    except Exception as e:
-        # here will need the traceback as a result
-        print(e)
-    try:
         type_of_output = type(test.test_output)
         type_of_result = type(result)
         if type_of_output is not type_of_result:
@@ -30,15 +27,23 @@ def exec_test(test: SimpleTest):
             raise NotImplementedError
         test_ok = assert_same(test.test_output, result)
     except AssertionError as e:
+        pass
         # the function returned but not with the good value
         # so this is a failing test, and the report will print the result
     except TypeError as e:
+        pass
         # the function returned but not with the good value
         # so this is a failing test, and the report will print the result
+    except Exception as e:
+        # here will need the traceback as a result
+        print("START TRACEBACK")
+        tb = traceback.format_exc()
+        print(tb)
+        print("END TRACEBACK")
     else:
+        pass
         # the test was successful
         #
-
     finally:
         print('wrap up')
 
@@ -58,3 +63,12 @@ def run_tests(tests: list[TestGroup | SimpleTest]):
 
 
 run_tests(tests)
+
+crash_test = SimpleSuccessTest(
+    "this must crash",
+    lambda  x : 1 / 0,
+    False,
+    False
+)
+
+exec_test(crash_test)
