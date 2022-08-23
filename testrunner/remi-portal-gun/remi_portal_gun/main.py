@@ -13,4 +13,8 @@ def run():
     typer.echo("running tests...")
     # discovery()
     # run_server()
-    get_website_files()
+    static_files = get_website_files()
+
+    for each in static_files:
+        print(each.route)
+

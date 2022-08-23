@@ -19,8 +19,8 @@ class WebsiteStaticFile(StaticFile):
     @property
     def route(self) -> str:
         """ URL route corresponding to that static file"""
-        parent = "/".join(self.package_name.split('dist.')[-1].split('.'))
-        return "/".join(parent, self.resource_name)
+        parent = "/".join(self.package_name.split('dist')[-1].split('.'))
+        return "/".join([parent, self.resource_name])
 
 
 def get_website_static_files_from_folder(package_name):
