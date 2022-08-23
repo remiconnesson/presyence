@@ -1,9 +1,10 @@
+import inspect
 from class_definitions import TestGroup, SimpleSuccessTest, SimpleExceptionTest, SimpleTest
 from demo import tests
 
 
 def inspect_test(test: SimpleTest):
-    pass
+    print(inspect.getsource(test.function))
 
 
 def run_tests(tests: list[TestGroup | SimpleTest]):
@@ -15,6 +16,7 @@ def run_tests(tests: list[TestGroup | SimpleTest]):
                 print("SST", test)
             elif isinstance(test, SimpleExceptionTest):
                 print("SET", test)
+            inspect_test(test)
 
 
 run_tests(tests)
