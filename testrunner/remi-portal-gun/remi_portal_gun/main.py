@@ -1,5 +1,6 @@
 import typer
 from .discovery import discovery
+from .server import run_server
 
 app = typer.Typer()
 
@@ -10,3 +11,4 @@ def run():
     """
     typer.echo("running tests...")
     discovery()
+    run_server()
