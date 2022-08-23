@@ -10,10 +10,11 @@ def run_tests(tests: list[TestGroup | SimpleTest]):
     for test in tests:
         if isinstance(test, TestGroup):
             run_tests(test.tests)
-        if isinstance(test, SimpleSuccessTest):
-            print("SST", test)
-        elif isinstance(test, SimpleExceptionTest):
-            print("SET", test)
+        else:
+            if isinstance(test, SimpleSuccessTest):
+                print("SST", test)
+            elif isinstance(test, SimpleExceptionTest):
+                print("SET", test)
 
 
 run_tests(tests)
