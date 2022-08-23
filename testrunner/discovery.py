@@ -14,8 +14,13 @@ for i, test_file in enumerate(test_files):
     loader = importlib.machinery.SourceFileLoader(module_name, str(test_file))
     m = types.ModuleType(module_name)
     loader.exec_module(m)
-    break
     # then for each check if there's a test list
+    print(dir(m))
+    tests = m.__dict__.get("TESTS", "notfound")
+    if tests=="notfound":
+        raise Exception("Your test files must contain a TESTS variable, which is a list of SimpleTest")
+    print(tests)
+    break
     # then make a list of list of tests
 
 
