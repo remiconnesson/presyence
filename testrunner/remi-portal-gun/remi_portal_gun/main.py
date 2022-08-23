@@ -2,6 +2,7 @@ import typer
 from .discovery import discovery
 from .server import run_server
 from .access_static import get_website_files
+from .inject_json_into_js import inject_payload
 import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -22,12 +23,16 @@ def run():
 
     index_file = static_files.pop("/index.html")
 
-#    favicon_file = static_files.pop("/favicon.ico")
-#    worker_route = [k for k in static_files.keys() if k.startswith("/assets/worker")][0]
-#    worker_file = static_files.pop(worker_route)
+    worker_route = [k for k in static_files.keys() if k.startswith("/assets/worker")][0]
+    worker_file = static_files[worker_route]
+
+    payload = {
+        "prefix":"J'AI REUSSI!!!!!"
+    }
+
+    worker_file.content = inject_payload(worker_file.content, payload)
 
     async def catch_all(request, exc):
-        print("hit")
         return HTMLResponse(index_file.content, status_code=200)
 
     exceptions = {
@@ -49,36 +54,9 @@ def run():
         mime_type = common_media_types.get(extension, "text/html")
         @app.get(static_file.route)
         def route():
-            print(static_file.route, mime_type)
             return Response(static_file.content, media_type=mime_type)
 
     for each in static_files.values():
         make_route(each)
 
     uvicorn.run(app, port=5000, log_level="info")
-
-
-
-
-
-
-
-"""
-async def catch_all(request, exc):
-    return FileResponse("dist/index.html", status_code=200)
-
-
-exceptions = {
-    404: catch_all,
-}
-
-def run_server():
-
-    app = FastAPI(exception_handlers=exceptions)
-
-
-    app.mount("/", StaticFiles(directory="dist", html=True), name="static")
-
-
-    uvicorn.run(app, port=5000, log_level="info")
-"""
