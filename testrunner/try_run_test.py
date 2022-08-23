@@ -1,8 +1,12 @@
-from class_definitions import TestGroup, SimpleSuccessTest, SimpleExceptionTest
+from class_definitions import TestGroup, SimpleSuccessTest, SimpleExceptionTest, SimpleTest
 from demo import tests
 
 
-def run_tests(tests):
+def inspect_test(test: SimpleTest):
+    pass
+
+
+def run_tests(tests: list[TestGroup | SimpleTest]):
     for test in tests:
         if isinstance(test, TestGroup):
             run_tests(test.tests)
