@@ -1,16 +1,26 @@
+import importlib.machinery
+import types
+from inspect import getmembers, isfunction
 # I need to find all files that contain tests
 from pathlib import Path
 
 p = Path('.')
 
-print(list(p.glob('**/*.spec.sy.py')))
-
-
-
+test_files = list(p.glob('**/*.spec.sy.py'))
 # then load them up dynamically
 
-# then for each check if there's a test list
+for i, test_file in enumerate(test_files):
+    module_name = "test_modules_{i}"
+    loader = importlib.machinery.SourceFileLoader(module_name, str(test_file))
+    m = types.ModuleType(module_name)
+    loader.exec_module(m)
+    break
+    # then for each check if there's a test list
+    # then make a list of list of tests
 
-# then make a list of list of tests
+
+
+
+
 
 
