@@ -19,7 +19,7 @@ class WebsiteStaticFile(StaticFile):
     @property
     def route(self) -> str:
         """ URL route corresponding to that static file"""
-        parent = "/".join(self.package_name.split('dist')[-1].split('.'))
+        parent = "/".join(self.package_name.split('www')[-1].split('.'))
         return "/".join([parent, self.resource_name])
 
 
@@ -42,7 +42,7 @@ def get_website_static_files_from_folder(package_name):
 
 def get_website_files() -> list[WebsiteStaticFile]:
     static_files = []
-    for package_name in ["remi_portal_gun.dist", "remi_portal_gun.dist.assets"]:
+    for package_name in ["remi_portal_gun.www", "remi_portal_gun.www.assets"]:
         static_files += get_website_static_files_from_folder(package_name)
     return static_files
 
