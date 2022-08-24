@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "remi-portal-gun"
-version = "0.3.0"
+version = "0.4.0"
 description = ""
 authors = ["Rémi Connesson <remiconnesson@gmail.com>"]
 readme = "README.md"
