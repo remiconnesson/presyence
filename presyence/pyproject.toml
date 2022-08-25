@@ -8,6 +8,8 @@ authors = ["Rémi Connesson <remiconnesson@gmail.com>"]
 python = "^3.10"
 typer = "^0.6.1"
 pandas = "^1.4.3"
+fastapi = "^0.80.0"
+uvicorn = "^0.18.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
