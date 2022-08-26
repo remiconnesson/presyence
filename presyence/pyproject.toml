@@ -4,6 +4,9 @@ version = "0.1.0"
 description = ""
 authors = ["Rémi Connesson <remiconnesson@gmail.com>"]
 
+[tool.poetry.scripts]
+presyence = "presyence.main:app"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 typer = "^0.6.1"
