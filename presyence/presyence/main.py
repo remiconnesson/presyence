@@ -18,6 +18,8 @@ def main():
         if not _tests:
             print(f"No tests found in file {test_file.absolute()}")
             exit()
+        tests += _tests
+    print(tests)
     print("Running tests")
     print("Creating the test report")
     print("Serving the test report on http://localhost:5000/")
