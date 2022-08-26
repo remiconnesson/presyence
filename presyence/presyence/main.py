@@ -1,4 +1,5 @@
 import typer
+from .testrunner.discovery import discover_test_files
 
 app = typer.Typer()
 
@@ -6,6 +7,8 @@ app = typer.Typer()
 @app.command()
 def main():
     print("Looking for tests")
+    test_files = discover_test_files()
+    print(test_files)
     if "No test file found":
         typer.Abort()
     if "No tests found in file":
