@@ -1,3 +1,4 @@
 *.sh
 dist
 .python-version
+experience_zone/
