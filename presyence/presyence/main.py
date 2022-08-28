@@ -19,7 +19,11 @@ def main():
             print(f"No tests found in file {test_file.absolute()}")
             exit()
         tests += _tests
-    print(tests)
     print("Running tests")
+    test_results = []
+    for test in tests:
+        test_results += [test.run()]
     print("Creating the test report")
+    for each in test_results:
+        print(each, end="\n"*2)
     print("Serving the test report on http://localhost:5000/")
