@@ -2,44 +2,19 @@
 import { ref } from "vue";
 import Worker from "@/assets/worker.ts?worker";
 
-let worker: Worker;
-
-const enthusiasmLevel = ref("!!!");
+const worker = new Worker();
 
 const messageFromTheWorker = ref("No message yet...");
 
-const workerLaunched = ref(false);
+worker.addEventListener("message", (event) => {
+  messageFromTheWorker.value = event.data;
+});
 
-function launchWorker() {
-  if (workerLaunched.value) return;
-  worker = new Worker();
-  worker.addEventListener("message", (event) => {
-    messageFromTheWorker.value = event.data;
-  });
-  workerLaunched.value = true;
-}
-
-const messageToWorker = ref("Hey");
-
-const sendMessageToWorker = () => {
-  if (!workerLaunched.value) return;
-  worker.postMessage(messageToWorker.value);
-  messageToWorker.value = "";
-};
+worker.postMessage("");
 </script>
 
 <template>
-  <h1>Hello, World{{ enthusiasmLevel }}</h1>
-  <br />
-  <button @click="launchWorker" v-if="!workerLaunched">
-    Launch the worker
-  </button>
-  <br />
-  <p>{{ messageFromTheWorker }}</p>
-  <br />
-  <div v-if="workerLaunched">
-    <input v-model="messageToWorker" /><button @click="sendMessageToWorker()">
-      SEND
-    </button>
-  </div>
+  <pre>
+  {{ messageFromTheWorker }}
+  </pre>
 </template>
