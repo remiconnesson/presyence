@@ -1,8 +1,17 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from collections.abc import Callable
 from abc import ABC, abstractmethod
 import pandas as pd
 import traceback
+import inspect
+
+@dataclass
+class SimpleTestExport:
+    title: str
+    function: str
+    input: str
+    expected_output: str
+
 
 @dataclass
 class SimpleTest:
@@ -10,6 +19,14 @@ class SimpleTest:
     function: Callable
     input: pd.DataFrame | pd.Series
     expected_output: pd.DataFrame | pd.Series
+
+    def export(self):
+        return SimpleTestExport(
+            title=self.title,
+            function=inspect.getsource(self.function),
+            input=self.input.to_csv(index=False),
+            expected_output=self.expected_output.to_csv(index=False)
+        )
 
     def __radd__(self, tests: list):
         if isinstance(tests, list):
@@ -39,7 +56,7 @@ class SimpleTest:
             raise
         except AssertionError as e:
             result = WrongResult(
-                testrun_output = testrun_output,
+                testrun_output = testrun_output.to_csv(index=False),
                 assertion_error_message = e.args[0]
             )
         except Exception:
@@ -50,19 +67,23 @@ class SimpleTest:
             result = Success()
         finally:
             return SimpleTestReport(
-                test = self,
+                test = self.export(),
                 result = result
             )
 
 
+@dataclass
 class TestResult(ABC):
+    successful: bool = field(init=False)
+    status: str = field(init=False)
+
     @abstractmethod
     def __bool__(self):
         ...
 
-    @property
-    def status(self):
-        return (bool(self), self.__class__.__name__)
+    def __post_init__(self):
+        self.successful = bool(self)
+        self.status = self.__class__.__name__
 
 
 @dataclass
@@ -72,7 +93,7 @@ class Success(TestResult):
 
 @dataclass
 class WrongResult(TestResult):
-    testrun_output: pd.DataFrame | pd.Series
+    testrun_output: str
     assertion_error_message: str
     def __bool__(self):
         return False
@@ -85,8 +106,5 @@ class Crash(TestResult):
 
 @dataclass
 class SimpleTestReport:
-    test: SimpleTest
+    test: SimpleTestExport
     result: TestResult
-    def __bool__(self):
-        return False
-

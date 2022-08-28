@@ -1,4 +1,5 @@
 import typer
+import dataclasses 
 from .testrunner.discovery import discover_test_files, extract_tests_from_file
 
 app = typer.Typer()
@@ -25,5 +26,5 @@ def main():
         test_results += [test.run()]
     print("Creating the test report")
     for each in test_results:
-        print(each, end="\n"*2)
+        print(dataclasses.asdict(each), end="\n"*2)
     print("Serving the test report on http://localhost:5000/")
