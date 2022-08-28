@@ -1,0 +1,1 @@
+(function(){"use strict";var e={beginPayload:!0,testReport:[],endPayload:!0};self.postMessage("Hello from the worker");const t=e.testReport;console.log("Worker is executed"),self.onmessage=()=>{self.postMessage(t)}})();

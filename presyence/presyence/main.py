@@ -1,7 +1,7 @@
 import typer
 import dataclasses
-import json
 from .testrunner.discovery import discover_test_files, extract_tests_from_file
+from .reporter.server import run_server_and_inject_payload
 
 app = typer.Typer()
 
@@ -26,5 +26,6 @@ def main():
     for test in tests:
         test_results += [test.run()]
     print("Creating the test report")
-    print(json.dumps(test_results))
+    test_report = {"testReport": test_results}
     print("Serving the test report on http://localhost:5000/")
+    run_server_and_inject_payload(test_report)
