@@ -1,5 +1,6 @@
 import typer
-import dataclasses 
+import dataclasses
+import json
 from .testrunner.discovery import discover_test_files, extract_tests_from_file
 
 app = typer.Typer()
@@ -25,6 +26,5 @@ def main():
     for test in tests:
         test_results += [test.run()]
     print("Creating the test report")
-    for each in test_results:
-        print(dataclasses.asdict(each), end="\n"*2)
+    print(json.dumps(test_results))
     print("Serving the test report on http://localhost:5000/")

@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, asdict
 from collections.abc import Callable
 from abc import ABC, abstractmethod
 import pandas as pd
@@ -66,10 +66,11 @@ class SimpleTest:
         else:
             result = Success()
         finally:
-            return SimpleTestReport(
+            _test_result = SimpleTestReport(
                 test = self.export(),
                 result = result
             )
+            return asdict(_test_result)
 
 
 @dataclass
