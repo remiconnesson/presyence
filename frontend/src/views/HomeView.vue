@@ -1,9 +1,7 @@
 <script setup lang="ts">
-const greeting = "Hello, World";
+import EveryTestsSummaries from "@/components/EveryTestsSummaries.vue";
 </script>
 
 <template>
-  <main>
-    <h1>{{ greeting }}</h1>
-  </main>
+  <EveryTestsSummaries />
 </template>
