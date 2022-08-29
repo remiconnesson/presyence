@@ -1,9 +1,10 @@
 import { defineStore } from "pinia";
 import Worker from "@/assets/worker.ts?worker";
 import { ref } from "vue";
+import type { TestReport } from "@/testReport";
 
 export const useTestsReportsStore = defineStore("testsReports", () => {
-  const testsReports = ref([]);
+  const testsReports = ref<TestReport[]>([]);
 
   const worker = new Worker();
   worker.addEventListener("message", (event) => {

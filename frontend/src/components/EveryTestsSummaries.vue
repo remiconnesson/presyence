@@ -6,8 +6,11 @@ const testsReportsStore = useTestsReportsStore();
 
 <template>
   <main>
-    <pre>
-  {{ testsReportsStore.testsReports }}
+    <pre
+      v-for="testReport in testsReportsStore.testsReports"
+      :key="testReport.test.title"
+    >
+  {{ testReport }}
     </pre>
   </main>
 </template>
