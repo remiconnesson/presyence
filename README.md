@@ -2,7 +2,7 @@
 
 Easily test your feature engineering functions!
 
-Just name your test files `whatyouwant.spec.sy.py`
+Just name your test files `whatyouwant.spec.sy.py` and then run `presyence` in your project directory.
 
 ```python
 # file : `mytest.spec.sy.py`
@@ -52,7 +52,28 @@ def drop_unnamed(df):
 ```
 
 
-- `presyence` requires python `3.10`
+# Installation
+
+Just run `pip install presyence` and then run `presyence` in your project directories.
+
+- NOTE: `presyence` requires python `3.10`
+
+# How to Use?
+
+1. create a file ending with `.spec.sy.py`
+2. in that file create an empty lists called `TESTS`
+3. `from presyence.simpletests import SimpleTest`
+4. Then just add `SimpleTest` to the list of `TESTS` in that file. 
+5. Once you are happy with your tests, you can launch the testrunner with typing `presyence` in your CLI
+
+# How to create a simple test?
+
+`SimpleTest` requires 4 arguments:
+1. the function you want to test
+2. the input to the function (a `pandas.DataFrame` or a `pandas.Series`)
+3. the expected output of the function (a `pandas.DataFrame` or a `pandas.Series`)
+4. a string as title to describe what is being tested
+
 
 
 
