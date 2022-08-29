@@ -1,16 +1,20 @@
 <script setup lang="ts">
 import { useTestsReportsStore } from "@/stores/testsReports";
+import { RouterLink } from "vue-router";
 
 const testsReportsStore = useTestsReportsStore();
 </script>
 
 <template>
-  <main>
-    <pre
-      v-for="testReport in testsReportsStore.testsReports"
+  <ul>
+    <li
+      v-for="(testReport, index) in testsReportsStore.testsReports"
       :key="testReport.test.title"
     >
-  {{ testReport }}
-    </pre>
-  </main>
+      <RouterLink :to="{ name: 'test-detail', params: { index } }">
+        {{ index }} -- {{ testReport.result.status }} --
+        {{ testReport.test.title }}
+      </RouterLink>
+    </li>
+  </ul>
 </template>
