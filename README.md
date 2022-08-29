@@ -27,7 +27,7 @@ TESTS += SimpleTest(
     expected_output=pd.DataFrame.from_dict(dict_dataframe),
 )
 
-# another exemple
+# another example
 TESTS += SimpleTest(
     function=drop_unnamed,
     title="Drop Unnamed should drop the column 'Unnamed: 0'",
