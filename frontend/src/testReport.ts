@@ -14,8 +14,8 @@ export interface WrongResult extends TestResult {
 }
 
 export interface Crash extends TestResult {
-  stauts: "Crash";
-  tracebacl: string;
+  status: "Crash";
+  traceback: string;
 }
 
 export interface TestDefinition {
