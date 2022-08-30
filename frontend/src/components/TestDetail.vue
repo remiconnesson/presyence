@@ -21,15 +21,17 @@ const test = computed<TestReport>(() => {
   {{ test.result.status }}
   </pre>
   <CodeBlock :code="test.test.function" />
-  <DataFrameBlock>
-    {{ test.test.input }}
+  <DataFrameBlock :csv="test.test.input">The Test Input</DataFrameBlock>
+  <DataFrameBlock :csv="test.test.expected_output">
+    The Expected Result
   </DataFrameBlock>
-  <DataFrameBlock>
-    {{ test.test.expected_output }}
-  </DataFrameBlock>
-  <DataFrameBlock v-if="test.result.status === 'WrongResult'">
-    {{ test.result.testrun_output }}
-  </DataFrameBlock>
+
+  <DataFrameBlock
+    v-if="test.result.status === 'WrongResult'"
+    :csv="test.result.testrun_output"
+    >The Test Result</DataFrameBlock
+  >
+
   <CodeBlock
     v-if="test.result.status === 'WrongResult'"
     :code="test.result.assertion_error_message"
