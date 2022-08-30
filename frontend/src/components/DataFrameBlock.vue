@@ -9,17 +9,11 @@ const props = defineProps<{
 const dataFrame = computed(() => {
   return d3.csvParse(props.csv);
 });
-
-const nColumns = computed(() => {
-  return dataFrame.value.columns.length;
-});
 </script>
 
 <template>
+  <h2><slot></slot></h2>
   <thead>
-    <tr>
-      <th :colspan="nColumns"><slot></slot></th>
-    </tr>
     <tr>
       <th v-for="col in dataFrame.columns" :key="col">
         {{ col }}

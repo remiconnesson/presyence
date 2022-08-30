@@ -12,9 +12,15 @@ const testsReportsStore = useTestsReportsStore();
       :key="testReport.test.title"
     >
       <RouterLink :to="{ name: 'test-detail', params: { index } }">
-        {{ index }} -- {{ testReport.result.status }} --
+        {{ testReport.result.status }} --
         {{ testReport.test.title }}
       </RouterLink>
     </li>
   </ul>
 </template>
+
+<style scoped>
+li {
+  list-style: none;
+}
+</style>
