@@ -31,19 +31,6 @@
     },
     {
       "test": {
-        "title": "HARDCODED: Drop Unnamed v2 should drop the column 'Unnamed: 0'",
-        "function": "def drop_unnamed2(df):\n    return df.drop(columns=['Unnamed: 0'])\n",
-        "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
-        "expected_output": "0\n\"[1, 2, 4, 3]\"\n"
-      },
-      "result": {
-        "successful": false,
-        "status": "Crash",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/remiconn/battleground/env/lib/python3.10/site-packages/presyence/simpletests.py\", line 49, in run\n    assert_same = pd.testing.assert_serie_equal\nAttributeError: module 'pandas.testing' has no attribute 'assert_serie_equal'\n"
-      }
-    },
-    {
-      "test": {
         "title": "HARDCODED: Drop Unnamed should drop the column 'Unnamed: 0'",
         "function": "def drop_unnamed5(df):\n    return drop_unnamed3(df.yolo)\n",
         "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
