@@ -7,6 +7,11 @@ import { RouterView } from "vue-router";
 </template>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Karla&display=swap");
 @import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700|Open+Sans:400,800);
 @import "highlight.js/styles/mono-blue.css";
+
+body {
+  font-family: Karla;
+}
 </style>
