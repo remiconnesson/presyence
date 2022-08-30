@@ -28,3 +28,24 @@ const dataFrame = computed(() => {
     </tr>
   </tbody>
 </template>
+
+<style scoped>
+td,
+th {
+  width: 4rem;
+  height: 2rem;
+  text-align: center;
+}
+
+th {
+  background: lightblue;
+}
+
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
+
+tbody tr:hover {
+  background: yellow;
+}
+</style>
