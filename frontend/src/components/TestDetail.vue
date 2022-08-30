@@ -17,8 +17,12 @@ const test = computed<TestReport>(() => {
 
 <template>
   <h1>{{ test.result.status }} -- {{ test.test.title }}</h1>
-  <CodeBlock :code="test.test.function">Tested Function</CodeBlock>
-  <DataFrameBlock :csv="test.test.input"> The Test Input </DataFrameBlock>
+  <CodeBlock
+    v-if="test.result.status === 'WrongResult'"
+    :code="test.result.assertion_error_message"
+  >
+    Pandas Error Message
+  </CodeBlock>
   <DataFrameBlock :csv="test.test.expected_output">
     The Expected Result
   </DataFrameBlock>
@@ -29,13 +33,9 @@ const test = computed<TestReport>(() => {
     >The Test Result</DataFrameBlock
   >
 
-  <CodeBlock
-    v-if="test.result.status === 'WrongResult'"
-    :code="test.result.assertion_error_message"
-  >
-    Pandas Error Message
-  </CodeBlock>
   <CodeBlock v-if="test.result.status === 'Crash'" :code="test.result.traceback"
     >Crash Traceback</CodeBlock
   >
+  <CodeBlock :code="test.test.function">Tested Function</CodeBlock>
+  <DataFrameBlock :csv="test.test.input"> The Test Input </DataFrameBlock>
 </template>
