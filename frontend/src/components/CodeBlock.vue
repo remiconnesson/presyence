@@ -12,8 +12,15 @@ const highlightedCode = computed(() => {
 </script>
 
 <template>
-  <pre>
-  <code>
-  <div v-html="highlightedCode" />
-  </code></pre>
+  <pre class="code code-highlight">
+    <code class="code code-highlight">
+      <div v-html="highlightedCode" />
+    </code>
+  </pre>
 </template>
+
+<style>
+.code .code-highlight {
+  font-family: Inconsolata;
+}
+</style>
