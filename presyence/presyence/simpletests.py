@@ -46,7 +46,7 @@ class SimpleTest:
             if isinstance(self.expected_output, pd.DataFrame):
                 assert_same = pd.testing.assert_frame_equal
             elif isinstance(self.expected_output, pd.Series):
-                assert_same = pd.testing.assert_serie_equal
+                assert_same = pd.testing.assert_series_equal
             else:
                 raise NotImplementedError("Expected output must be a pandas DataFrame or a Serie")
             if not isinstance(testrun_output, pd.DataFrame | pd.Series):
