@@ -20,9 +20,7 @@ const test = computed<TestReport>(() => {
   {{ test.test.title }}
   {{ test.result.status }}
   </pre>
-  <CodeBlock>
-    {{ test.test.function }}
-  </CodeBlock>
+  <CodeBlock :code="test.test.function" />
   <DataFrameBlock>
     {{ test.test.input }}
   </DataFrameBlock>
@@ -32,11 +30,12 @@ const test = computed<TestReport>(() => {
   <DataFrameBlock v-if="test.result.status === 'WrongResult'">
     {{ test.result.testrun_output }}
   </DataFrameBlock>
-  <CodeBlock v-if="test.result.status === 'WrongResult'">
-    {{ test.result.assertion_error_message }}
-  </CodeBlock>
-  <CodeBlock v-if="test.result.status === 'Crash'">
-    TRACEBACK
-    {{ test.result.traceback }}
-  </CodeBlock>
+  <CodeBlock
+    v-if="test.result.status === 'WrongResult'"
+    :code="test.result.assertion_error_message"
+  />
+  <CodeBlock
+    v-if="test.result.status === 'Crash'"
+    :code="test.result.traceback"
+  />
 </template>

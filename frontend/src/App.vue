@@ -5,3 +5,7 @@ import { RouterView } from "vue-router";
 <template>
   <RouterView />
 </template>
+
+<style>
+@import "highlight.js/styles/mono-blue.css";
+</style>
