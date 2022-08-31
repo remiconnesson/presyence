@@ -3,7 +3,7 @@
   "testReport": [
     {
       "test": {
-        "title": "HARDCODED: Identity function should return the same object",
+        "title": "DUMMY DATA Identity function should return the same object",
         "function": "def identity(x):\n    return x\n",
         "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
         "expected_output": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n3,3\n"
@@ -17,7 +17,7 @@
     },
     {
       "test": {
-        "title": "HARDCODED: Drop Unnamed should drop the column 'Unnamed: 0'",
+        "title": "DUMMY DATA Drop Unnamed should drop the column 'Unnamed: 0'",
         "function": "def drop_unnamed(df):\n    return df.drop(columns=['Unnamed: 0'])\n",
         "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
         "expected_output": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n"
@@ -31,38 +31,7 @@
     },
     {
       "test": {
-        "title": "HARDCODED: Drop Unnamed should drop the column 'Unnamed: 0'",
-        "function": "def drop_unnamed5(df):\n    return drop_unnamed3(df.yolo)\n",
-        "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
-        "expected_output": "useful col\n1\n2\n4\n3\n"
-      },
-      "result": {
-        "successful": false,
-        "status": "Crash",
-        "traceback": "Traceback (most recent call last):\n  File \"/home/remiconn/battleground/env/lib/python3.10/site-packages/presyence/simpletests.py\", line 45, in run\n    testrun_output = self.function(self.input)\n  File \"/home/remiconn/battleground/experience_zone/realcode.py\", line 14, in drop_unnamed5\n    return drop_unnamed3(df.yolo)\n  File \"/home/remiconn/battleground/env/lib/python3.10/site-packages/pandas/core/generic.py\", line 5575, in __getattr__\n    return object.__getattribute__(self, name)\nAttributeError: 'DataFrame' object has no attribute 'yolo'\n"
-      }
-    },
-    {
-      "test": {
-        "title": "HARDCODED: Identity function should return the same object",
-        "function": "def identity(x):\n    return x\n",
-        "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
-        "expected_output": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n"
-      },
-      "result": { "successful": true, "status": "Success" }
-    },
-    {
-      "test": {
-        "title": "HARDCODED: Drop Unnamed should drop the column 'Unnamed: 0'",
-        "function": "def drop_unnamed(df):\n    return df.drop(columns=['Unnamed: 0'])\n",
-        "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
-        "expected_output": "useful col\n1\n2\n4\n3\n"
-      },
-      "result": { "successful": true, "status": "Success" }
-    },
-    {
-      "test": {
-        "title": "HARDCODED: Drop Unnamed v2 should drop the column 'Unnamed: 0'",
+        "title": "DUMMY DATA Drop Unnamed v2 should drop the column 'Unnamed: 0'",
         "function": "def drop_unnamed2(df):\n    return df.drop(columns=['Unnamed: 0'])\n",
         "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
         "expected_output": "useful col\n1\n2\n4\n3\n"
@@ -71,7 +40,47 @@
     },
     {
       "test": {
-        "title": "HARDCODED: Drop Unnamed v4 should drop the column 'Unnamed: 0'",
+        "title": "DUMMY DATA Drop Unnamed should drop the column 'Unnamed: 0'",
+        "function": "def drop_unnamed5(df):\n    return drop_unnamed3(df.yolo)\n",
+        "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
+        "expected_output": "useful col\n1\n2\n4\n3\n"
+      },
+      "result": {
+        "successful": false,
+        "status": "Crash",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/remiconn/python-static-spa/presyence/env/lib/python3.10/site-packages/presyence/simpletests.py\", line 138, in run\n    testrun_output = self.function(self.input)\n  File \"/home/remiconn/python-static-spa/presyence/experience_zone/realcode.py\", line 14, in drop_unnamed5\n    return drop_unnamed3(df.yolo)\n  File \"/home/remiconn/python-static-spa/presyence/env/lib/python3.10/site-packages/pandas/core/generic.py\", line 5575, in __getattr__\n    return object.__getattribute__(self, name)\nAttributeError: 'DataFrame' object has no attribute 'yolo'\n"
+      }
+    },
+    {
+      "test": {
+        "title": "DUMMY DATA Identity function should return the same object",
+        "function": "def identity(x):\n    return x\n",
+        "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
+        "expected_output": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n"
+      },
+      "result": { "successful": true, "status": "Success" }
+    },
+    {
+      "test": {
+        "title": "DUMMY DATA Drop Unnamed should drop the column 'Unnamed: 0'",
+        "function": "def drop_unnamed(df):\n    return df.drop(columns=['Unnamed: 0'])\n",
+        "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
+        "expected_output": "useful col\n1\n2\n4\n3\n"
+      },
+      "result": { "successful": true, "status": "Success" }
+    },
+    {
+      "test": {
+        "title": "DUMMY DATA Drop Unnamed v2 should drop the column 'Unnamed: 0'",
+        "function": "def drop_unnamed2(df):\n    return df.drop(columns=['Unnamed: 0'])\n",
+        "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
+        "expected_output": "useful col\n1\n2\n4\n3\n"
+      },
+      "result": { "successful": true, "status": "Success" }
+    },
+    {
+      "test": {
+        "title": "DUMMY DATA Drop Unnamed v4 should drop the column 'Unnamed: 0'",
         "function": "def drop_unnamed4(df):\n    return drop_unnamed3(df)\n",
         "input": "Unnamed: 0,useful col\n1,1\n2,2\n3,4\n4,3\n",
         "expected_output": "useful col\n1\n2\n4\n3\n"
