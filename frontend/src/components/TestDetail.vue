@@ -13,11 +13,18 @@ const test = computed<TestReport>(() => {
   const index = parseInt(route.params.index as string);
   return testsReportsStore.testsReports[index];
 });
+
+const successTagStyle = computed(() => {
+  if (test.value.result.successful) return "is-success";
+  else return "is-danger";
+});
 </script>
 
 <template>
   <h1 class="title">
-    <span class="tag is-medium">{{ test.result.status }}</span>
+    <span class="tag is-medium" :class="successTagStyle">{{
+      test.result.status
+    }}</span>
     {{ test.test.title }}
   </h1>
   <div

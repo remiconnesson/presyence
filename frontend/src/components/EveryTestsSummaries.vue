@@ -24,6 +24,11 @@ const filteredTestsReports = computed(() => {
     return false;
   });
 });
+
+const successTagStyle = (test) => {
+  if (test.result.successful) return "is-success";
+  else return "is-danger";
+};
 </script>
 
 <template>
@@ -57,7 +62,9 @@ const filteredTestsReports = computed(() => {
           :to="{ name: 'test-detail', params: { index } }"
           class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
         >
-          <span>{{ testReport.result.status }}</span>
+          <span class="tag" :class="successTagStyle(testReport)">{{
+            testReport.result.status
+          }}</span>
           <span>{{ testReport.test.title }}</span>
         </RouterLink>
       </li>
