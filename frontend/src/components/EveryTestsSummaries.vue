@@ -47,17 +47,22 @@ const filteredTestsReports = computed(() => {
       <label :for="status">{{ status }}</label>
     </div>
   </div>
-  <ul>
-    <li
-      v-for="(testReport, index) in filteredTestsReports"
-      :key="testReport.test.title"
-    >
-      <RouterLink :to="{ name: 'test-detail', params: { index } }">
-        {{ testReport.result.status }} --
-        {{ testReport.test.title }}
-      </RouterLink>
-    </li>
-  </ul>
+  <nav class="is-primary-panel">
+    <ul>
+      <li
+        v-for="(testReport, index) in filteredTestsReports"
+        :key="testReport.test.title"
+      >
+        <RouterLink
+          :to="{ name: 'test-detail', params: { index } }"
+          class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
+        >
+          <span>{{ testReport.result.status }}</span>
+          <span>{{ testReport.test.title }}</span>
+        </RouterLink>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <style scoped>
