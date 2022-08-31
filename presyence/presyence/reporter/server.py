@@ -35,8 +35,12 @@ def run_server_and_inject_payload(payload):
         common_media_types = {
             "js" : "application/javascript",
             "ico" : "image/x-icon",
+            "css" : "text/css",
+            "html": "text/html"
         }
-        mime_type = common_media_types.get(extension, "text/html")
+        mime_type = common_media_types.get(extension)
+        if not mime_type:
+            raise NotImplementedError
         @app.get(static_file.route)
         def route():
             return Response(static_file.content, media_type=mime_type)
