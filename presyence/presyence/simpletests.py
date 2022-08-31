@@ -17,8 +17,8 @@ class SimpleTestExport:
 class SimpleTest:
     title: str
     function: Callable
-    input: pd.DataFrame | pd.Series
-    expected_output: pd.DataFrame | pd.Series
+    input: pd.DataFrame # | pd.Series
+    expected_output: pd.DataFrame # | pd.Series
 
     def __post_init__(self):
         """
@@ -56,7 +56,8 @@ class SimpleTest:
             if isinstance(self.expected_output, pd.DataFrame):
                 assert_same = pd.testing.assert_frame_equal
             elif isinstance(self.expected_output, pd.Series):
-                assert_same = pd.testing.assert_series_equal
+                raise NotImplementedError("pd.Series handling will come in a later version.")
+                # assert_same = pd.testing.assert_series_equal
             else:
                 raise NotImplementedError("Expected output must be a pandas DataFrame or a Serie")
             if not isinstance(testrun_output, pd.DataFrame | pd.Series):
