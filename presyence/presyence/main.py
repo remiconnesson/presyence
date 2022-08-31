@@ -1,5 +1,4 @@
 import typer
-import dataclasses
 from .testrunner.discovery import discover_test_files, extract_tests_from_file
 from .reporter.server import run_server_and_inject_payload
 
