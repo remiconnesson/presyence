@@ -4,6 +4,10 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
-  <RouterLink to="/">Back</RouterLink>
-  <TestDetail></TestDetail>
+  <div class="columns">
+    <div class="column is-four-fifths">
+      <RouterLink to="/" class="button">Back</RouterLink>
+      <TestDetail></TestDetail>
+    </div>
+  </div>
 </template>

@@ -1,5 +1,3 @@
-self.postMessage("Hello from the worker");
-
 import json from "@/assets/input.json";
 
 const testReport = json.testReport;
