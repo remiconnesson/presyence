@@ -2,6 +2,7 @@
 import { ref, computed } from "vue";
 import { useTestsReportsStore } from "@/stores/testsReports";
 import { RouterLink } from "vue-router";
+import type { TestReport } from "@/testReport";
 
 const testsReportsStore = useTestsReportsStore();
 
@@ -25,7 +26,7 @@ const filteredTestsReports = computed(() => {
   });
 });
 
-const successTagStyle = (test) => {
+const successTagStyle = (test: TestReport) => {
   if (test.result.successful) return "is-success";
   else return "is-danger";
 };
