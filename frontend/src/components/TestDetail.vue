@@ -21,26 +21,26 @@ const successTagStyle = computed(() => {
 </script>
 
 <template>
-  <h1 class="title">
+  <h1 class="title title-strong-color box">
     <span class="tag is-medium" :class="successTagStyle">{{
       test.result.status
     }}</span>
     {{ test.test.title }}
   </h1>
   <div
-    class="detail-card block"
+    class="detail-card block box"
     v-if="test.result.status === 'WrongResult'"
     data-testid="test-detail-pandas-error"
   >
-    <h2 class="subtitle">Pandas Error Message</h2>
+    <h2 class="subtitle subtitle-strong-color">Pandas Error Message</h2>
     <CodeBlock :code="test.result.assertion_error_message" />
   </div>
-  <div class="detail-card block" data-testid="test-detail-expected-output">
+  <div class="detail-card block box" data-testid="test-detail-expected-output">
     <h2 class="subtitle">The Expected Result</h2>
     <DataFrameBlock :csv="test.test.expected_output" />
   </div>
   <div
-    class="detail-card block"
+    class="detail-card block box"
     v-if="test.result.status === 'WrongResult'"
     data-testid="test-detail-testrun-output"
   >
@@ -49,19 +49,19 @@ const successTagStyle = computed(() => {
   </div>
 
   <div
-    class="detail-card block"
+    class="detail-card block box"
     v-if="test.result.status === 'Crash'"
     data-testid="test-detail-traceback"
   >
     <h2 class="subtitle">Crash Traceback</h2>
     <CodeBlock :code="test.result.traceback" />
   </div>
-  <div class="detail-card block" data-testid="test-detail-function">
+  <div class="detail-card block box" data-testid="test-detail-function">
     <h2 class="subtitle">Tested Function</h2>
     <CodeBlock :code="test.test.function" />
   </div>
 
-  <div class="detail-card block" data-testid="test-detail-input">
+  <div class="detail-card block box" data-testid="test-detail-input">
     <h2 class="subtitle">The Test Input</h2>
     <DataFrameBlock :csv="test.test.input" />
   </div>
