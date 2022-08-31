@@ -12,7 +12,6 @@ const dataFrame = computed(() => {
 </script>
 
 <template>
-  <h2><slot></slot></h2>
   <thead>
     <tr>
       <th v-for="col in dataFrame.columns" :key="col">

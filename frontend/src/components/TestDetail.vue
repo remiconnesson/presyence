@@ -17,25 +17,42 @@ const test = computed<TestReport>(() => {
 
 <template>
   <h1>{{ test.result.status }} -- {{ test.test.title }}</h1>
-  <CodeBlock
+  <div
+    class="detail-card"
     v-if="test.result.status === 'WrongResult'"
-    :code="test.result.assertion_error_message"
+    data-testid="test-detail-pandas-error"
   >
-    Pandas Error Message
-  </CodeBlock>
-  <DataFrameBlock :csv="test.test.expected_output">
-    The Expected Result
-  </DataFrameBlock>
-
-  <DataFrameBlock
+    <h2>Pandas Error Message</h2>
+    <CodeBlock :code="test.result.assertion_error_message" />
+  </div>
+  <div class="detail-card" data-testid="test-detail-expected-output">
+    <h2>The Expected Result</h2>
+    <DataFrameBlock :csv="test.test.expected_output" />
+  </div>
+  <div
+    class="detail-card"
     v-if="test.result.status === 'WrongResult'"
-    :csv="test.result.testrun_output"
-    >The Test Result</DataFrameBlock
+    data-testid="test-detail-testrun-output"
   >
+    <h2>The Test Result</h2>
+    <DataFrameBlock :csv="test.result.testrun_output" />
+  </div>
 
-  <CodeBlock v-if="test.result.status === 'Crash'" :code="test.result.traceback"
-    >Crash Traceback</CodeBlock
+  <div
+    class="detail-card"
+    v-if="test.result.status === 'Crash'"
+    data-testid="test-detail-traceback"
   >
-  <CodeBlock :code="test.test.function">Tested Function</CodeBlock>
-  <DataFrameBlock :csv="test.test.input"> The Test Input </DataFrameBlock>
+    <h2>Crash Traceback</h2>
+    <CodeBlock :code="test.result.traceback" />
+  </div>
+  <div class="detail-card" data-testid="test-detail-function">
+    <h2>Tested Function</h2>
+    <CodeBlock :code="test.test.function" />
+  </div>
+
+  <div class="detail-card" data-testid="test-detail-input">
+    <h2>The Test Input</h2>
+    <DataFrameBlock :csv="test.test.input" />
+  </div>
 </template>
