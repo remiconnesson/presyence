@@ -33,62 +33,65 @@ const successTagStyle = (test) => {
 
 <template>
   <section class="section">
-    <div class="is-primary-panel">
-      <div
-        class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
-      >
-        <div class="field">
-          <label for="search" class="label">Filter by search term</label>
-          <div class="control">
-            <input
-              type="text"
-              name="search"
-              v-model="searchTerm"
-              placeholder="search term"
-            />
-          </div>
-        </div>
-      </div>
-      <div
-        class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
-      >
-        <div class="field">
-          <label for="search" class="label">Filter by status</label>
-          <div class="filter-options">
-            <div class="option" v-for="status in allStatus" :key="status">
-              <label :for="status" class="checkbox">
-                <input
-                  type="checkbox"
-                  :id="status"
-                  :value="status"
-                  v-model="selectedStatus"
-                />
-
-                {{ status }}</label
-              >
+    <div class="panel">
+      <p class="panel-heading">presyence tests reports</p>
+      <div class="is-primary-panel">
+        <div
+          class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
+        >
+          <div class="field">
+            <label for="search" class="label">Filter by search term</label>
+            <div class="control">
+              <input
+                type="text"
+                name="search"
+                v-model="searchTerm"
+                placeholder="search term"
+              />
             </div>
           </div>
         </div>
-      </div>
+        <div
+          class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
+        >
+          <div class="field">
+            <label for="search" class="label">Filter by status</label>
+            <div class="filter-options">
+              <div class="option" v-for="status in allStatus" :key="status">
+                <label :for="status" class="checkbox">
+                  <input
+                    type="checkbox"
+                    :id="status"
+                    :value="status"
+                    v-model="selectedStatus"
+                  />
 
-      <nav>
-        <ul>
-          <li
-            v-for="(testReport, index) in filteredTestsReports"
-            :key="testReport.test.title"
-          >
-            <RouterLink
-              :to="{ name: 'test-detail', params: { index } }"
-              class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
+                  {{ status }}</label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <nav>
+          <ul>
+            <li
+              v-for="(testReport, index) in filteredTestsReports"
+              :key="testReport.test.title"
             >
-              <span class="tag" :class="successTagStyle(testReport)">{{
-                testReport.result.status
-              }}</span>
-              <span>{{ testReport.test.title }}</span>
-            </RouterLink>
-          </li>
-        </ul>
-      </nav>
+              <RouterLink
+                :to="{ name: 'test-detail', params: { index } }"
+                class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
+              >
+                <span class="tag" :class="successTagStyle(testReport)">{{
+                  testReport.result.status
+                }}</span>
+                <span>{{ testReport.test.title }}</span>
+              </RouterLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </section>
 </template>
