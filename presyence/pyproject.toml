@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "presyence"
-version = "0.1.9"
+version = "0.1.10"
 description = ""
 authors = ["Rémi Connesson <remiconnesson@gmail.com>"]
 
