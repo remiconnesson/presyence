@@ -34,7 +34,7 @@ const test = computed<TestReport>(() => {
     v-if="test.result.status === 'WrongResult'"
     data-testid="test-detail-testrun-output"
   >
-    <h2>The Test Result</h2>
+    <h2>The Observed Result</h2>
     <DataFrameBlock :csv="test.result.testrun_output" />
   </div>
 

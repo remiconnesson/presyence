@@ -19,6 +19,17 @@ describe("The Detailed Views survive an hard refresh", () => {
       .should("have.length", 2);
   }
 
+  it("can go back to home after a hard refresh", () => {
+    /*
+     *  Check that the back link still works after a hard refresh.
+     *
+     */
+    cy.visit("/test/4");
+    cy.reload(true);
+    cy.get("a").click();
+    cy.get(".search-box > input").should("be.visible");
+  });
+
   function containsStuffTheyHaveInCommon() {
     cy.contains("h2", "The Expected Result");
     cy.contains("h2", "The Test Input");
@@ -29,16 +40,22 @@ describe("The Detailed Views survive an hard refresh", () => {
 
   it("hard refresh on a `WrongResult` and it renders properly", () => {
     cy.visit("/test/0");
+    cy.reload(true);
     containsStuffTheyHaveInCommon();
+    cy.contains("h2", "Pandas Error Message");
+    cy.contains("h2", "The Observed Result");
   });
 
   it("hard refresh on a `Crash` and it renders properly", () => {
     cy.visit("/test/2");
+    cy.reload(true);
     containsStuffTheyHaveInCommon();
+    cy.contains("h2", "Traceback");
   });
 
   it("hard refresh on a `Success` it renders properly", () => {
     cy.visit("/test/5");
+    cy.reload(true);
     containsStuffTheyHaveInCommon();
   });
 });
