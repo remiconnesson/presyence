@@ -26,6 +26,7 @@ export interface TestDefinition {
 }
 
 export interface TestReport {
+  id: number;
   test: TestDefinition;
   result: Success | WrongResult | Crash;
 }

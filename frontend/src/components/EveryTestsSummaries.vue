@@ -75,12 +75,9 @@ const successTagStyle = (test) => {
 
         <nav>
           <ul>
-            <li
-              v-for="(testReport, index) in filteredTestsReports"
-              :key="testReport.test.title"
-            >
+            <li v-for="testReport in filteredTestsReports" :key="testReport.id">
               <RouterLink
-                :to="{ name: 'test-detail', params: { index } }"
+                :to="{ name: 'test-detail', params: { index: testReport.id } }"
                 class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
               >
                 <span class="tag" :class="successTagStyle(testReport)">{{
