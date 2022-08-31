@@ -11,10 +11,10 @@ describe("The Detailed Views survive an hard refresh", () => {
     /*
      * Here we are checking that the table has 4 rows and 2 columns, which is possible, if and only if, the app has (1.) got the .csv from the pinia store, then (2.) parsed the CSV into an iterable and then (3.) built a HTML table from this iterable.
      */
-    cy.get('[data-testid="test-detail-input"] > tbody ')
+    cy.get('[data-testid="test-detail-input"] > table > tbody ')
       .children()
       .should("have.length", 4);
-    cy.get('[data-testid="test-detail-input"] > tbody > :nth-child(3)')
+    cy.get('[data-testid="test-detail-input"] > table > tbody > :nth-child(3)')
       .children()
       .should("have.length", 2);
   }
@@ -27,7 +27,7 @@ describe("The Detailed Views survive an hard refresh", () => {
     cy.visit("/test/4");
     cy.reload(true);
     cy.get("a").click();
-    cy.get(".search-box > input").should("be.visible");
+    cy.get("[data-testid='search-bar']").should("be.visible");
   });
 
   function containsStuffTheyHaveInCommon() {
@@ -47,7 +47,7 @@ describe("The Detailed Views survive an hard refresh", () => {
   });
 
   it("hard refresh on a `Crash` and it renders properly", () => {
-    cy.visit("/test/2");
+    cy.visit("/test/3");
     cy.reload(true);
     containsStuffTheyHaveInCommon();
     cy.contains("h2", "Traceback");

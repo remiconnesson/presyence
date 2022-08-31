@@ -44,6 +44,7 @@ const successTagStyle = (test: TestReport) => {
             <label for="search" class="label">Filter by search term</label>
             <div class="control">
               <input
+                data-testid="search-bar"
                 type="text"
                 name="search"
                 v-model="searchTerm"
