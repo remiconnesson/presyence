@@ -35,7 +35,7 @@ const successTagStyle = (test: TestReport) => {
 <template>
   <section class="section">
     <div class="panel">
-      <p class="panel-heading">presyence tests reports</p>
+      <p class="panel-heading">Tests Reports</p>
       <div class="is-primary-panel">
         <div
           class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
@@ -98,5 +98,14 @@ const successTagStyle = (test: TestReport) => {
 <style scoped>
 li {
   list-style: none;
+}
+
+p.panel-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  /*
+  font-family: Inconsolata;
+  font-size: 1.5rem;
+  */
 }
 </style>
