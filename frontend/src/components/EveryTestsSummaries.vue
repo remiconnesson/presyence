@@ -62,6 +62,7 @@ const successTagStyle = (test: TestReport) => {
               <div class="option" v-for="status in allStatus" :key="status">
                 <label :for="status" class="checkbox">
                   <input
+                    data-testid="filter-checkbox"
                     type="checkbox"
                     :id="status"
                     :value="status"
@@ -76,15 +77,18 @@ const successTagStyle = (test: TestReport) => {
         </div>
 
         <nav>
-          <ul>
+          <ul data-testid="home-all-tests-list">
             <li v-for="testReport in filteredTestsReports" :key="testReport.id">
               <RouterLink
                 :to="{ name: 'test-detail', params: { index: testReport.id } }"
                 class="panel-block is-flex is-flex-direction-column is-align-items-flex-start"
               >
-                <span class="tag" :class="successTagStyle(testReport)">{{
-                  testReport.result.status
-                }}</span>
+                <span
+                  data-testid="home-status-tag"
+                  class="tag"
+                  :class="successTagStyle(testReport)"
+                  >{{ testReport.result.status }}</span
+                >
                 <span>{{ testReport.test.title }}</span>
               </RouterLink>
             </li>
